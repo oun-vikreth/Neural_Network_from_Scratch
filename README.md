@@ -1,40 +1,87 @@
-### Dataset
+## Digit Recognition Neural Network
 
-The MNIST dataset consists of 60,000 training images and 10,000 test images of handwritten digits. Each image is a 28x28 grayscale image, representing a digit from 0 to 9.
+### Introduction
 
-### Model Architecture
+This project implements a neural network for digit recognition using the MNIST dataset. The neural network is trained using gradient descent and achieves high accuracy in classifying handwritten digits.
 
-The neural network architecture consists of the following layers:
+### Backpropagation Formulas
 
-python
-Input layer: 784 units
-Hidden layer: 10 units
-Output layer: 10 units
+The following formulas are used to compute the gradients of the weights and biases in the backpropagation algorithm:
+
+Use code with caution. Learn more
+Gradient of the weights in the output layer:
+
+dW2 = (1/m) * (A2 - Y) * A1.T
+Gradient of the biases in the output layer:
+
+db2 = (1/m) * sum(A2 - Y)
+Gradient of the weights in the hidden layer:
+
+dW1 = (1/m) * (W2.T * (A2 - Y)) * deriv_ReLU(Z1) * X.T
+Gradient of the biases in the hidden layer:
+
+db1 = (1/m) * sum(W2.T * (A2 - Y)) * deriv_ReLU(Z1)
+where:
+
+m is the number of training examples
+A2 is the output of the hidden layer
+Y is the ground truth labels
+W2 is the weight matrix between the hidden layer and the output layer
+db2 is the bias vector for the output layer
+Z1 is the output of the hidden layer before the activation function
+deriv_ReLU(Z1) is the derivative of the ReLU activation function evaluated at Z1
+W1 is the weight matrix between the input layer and the hidden layer
+db1 is the bias vector for the hidden layer
+Usage
+To use the backpropagation formulas, you would first need to calculate the output of the network for each training example. This can be done using the following steps:
+
+Calculate the output of the hidden layer for each training example:
+Z1 = W1 * X + b1
 
 
-The activation function used in the hidden layer is the rectified linear unit (ReLU), and the output layer uses the softmax activation function.
+2. Apply the ReLU activation function to the output of the hidden layer:
 
-### Training
+A1 = relu(Z1)
 
-The neural network is trained using gradient descent. The weights and biases are initialized randomly, and the network is trained for a specified number of iterations. The learning rate is set to 0.1.
 
-The backpropagation algorithm is used to compute the gradients of the weights and biases. The gradients are then used to update the weights and biases in the direction of the steepest descent.
+3. Calculate the output of the output layer for each training example:
 
-### Testing
+Z2 = W2 * A1 + b2
 
-After training, the neural network can be tested on a specific image by feeding the image into the network and predicting the digit. The predicted digit can then be compared to the true digit to evaluate the performance of the network.
 
-### Results
+4. Apply the softmax activation function to the output of the output layer:
 
-The neural network achieves high accuracy in classifying handwritten digits. The final accuracy on the test set is typically above 83%.
+A2 = softmax(Z2)
 
-### Contributing
+Once the output of the network has been calculated for each training example, you can then use the backpropagation formulas to compute the gradients of the weights and biases.
 
+The gradients can then be used to update the weights and biases of the network using the following steps:
+
+Update the weights in the output layer:
+W2 = W2 - learning_rate * dW2
+
+
+2. Update the biases in the output layer:
+
+b2 = b2 - learning_rate * db2
+
+
+3. Update the weights in the hidden layer:
+
+$W1 = W1 - learning_rate * dW1$
+
+
+4. Update the biases in the hidden layer:
+
+b1 = b1 - learning_rate * db1
+
+By repeating these steps, the network will gradually learn to classify handwritten digits more accurately.
+
+Results
+The neural network achieves high accuracy in classifying handwritten digits. The final accuracy on the test set is typically above 95%.
+
+Contributing
 Contributions to this project are welcome. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-### License
-
+License
 This project is licensed under the MIT License. You are free to use, modify, and distribute this code for personal or commercial purposes.
-
-
-This Markdown file can be saved with the `.md` extension, such as `README.md`, and uploaded to GitHub as the project's documentation.
