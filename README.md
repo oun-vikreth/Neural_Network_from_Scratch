@@ -1,6 +1,3 @@
-python test.py
-
-
 ### Dataset
 
 The MNIST dataset consists of 60,000 training images and 10,000 test images of handwritten digits. Each image is a 28x28 grayscale image, representing a digit from 0 to 9.
@@ -29,7 +26,7 @@ After training, the neural network can be tested on a specific image by feeding 
 
 ### Results
 
-The neural network achieves high accuracy in classifying handwritten digits. The final accuracy on the test set is typically above 95%.
+The neural network achieves high accuracy in classifying handwritten digits. The final accuracy on the test set is typically above 83%.
 
 ### Contributing
 
